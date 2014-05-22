@@ -1,5 +1,0 @@
-#!/bin/bash
-
-java -classpath .:poppy_java_client_classes.jar:poppy_java_client_test_classes.jar:../../../poppy/java_sdk/lib/junit.jar:../../../poppy/java_sdk/lib/log4j.jar:../../../poppy/java_sdk/lib/protobuf-java.jar junit.textui.TestRunner com.soso.poppy.PoppyTest
-
-

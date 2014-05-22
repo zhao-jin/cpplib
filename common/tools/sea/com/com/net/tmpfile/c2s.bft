@@ -1,6 +1,0 @@
-struct C2S{
-   char c;
-   short d;
-};
-C2S c2s;
-

@@ -1,6 +1,0 @@
-struct A2B{
-   int a;
-   int b;
-};
-A2B a2b;
-

@@ -1,8 +1,0 @@
-struct C2S{
-   unsigned short d;
-   int e=2;
-   long long h;
-   char g[4];
-};
-C2S c2s;
-
