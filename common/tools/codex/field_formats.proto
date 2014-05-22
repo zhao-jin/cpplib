@@ -1,0 +1,20 @@
+// Copyright 2010 Tencent Inc.
+// Author: Yi Wang <yiwang@tencent.com>
+
+package codex; // package common.codex;
+
+// FormatOption describes a format option in a format string.
+message FieldFormat {
+  optional string separation = 1;
+  optional string prefix = 2;
+  optional string width = 3;
+  optional string precision = 4;
+  optional string decorator = 5;
+  optional string conversion = 6;
+  optional string attachment = 7;
+}
+
+// FormatOptionSequence describes a format string as a sequence of options.
+message FieldFormatSequence {
+  repeated FieldFormat format = 1;
+}

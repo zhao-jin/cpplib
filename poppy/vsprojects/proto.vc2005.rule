@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VisualStudioToolFile
+	Name="proto"
+	Version="8.00"
+	>
+	<Rules>
+		<CustomBuildRule
+			Name="proto"
+			CommandLine="..\..\..\..\..\release\bin\protoc.exe --cpp_out=$(InputDir) --proto_path=$(InputDir) --proto_path=..\..\..\..\  --proto_path=..\..\..\..\thirdparty\ $(InputDir)$(InputName).proto"
+			Outputs="$(InputDir)$(InputName).pb.h;$(InputDir)$(InputName).pb.cc"
+			FileExtensions="*.proto"
+			>
+			<Properties>
+			</Properties>
+		</CustomBuildRule>
+	</Rules>
+</VisualStudioToolFile>

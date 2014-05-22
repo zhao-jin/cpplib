@@ -1,0 +1,18 @@
+#!/bin/sh
+
+cd `dirname $0`
+
+install_tool() {
+	local name=$1
+	local path=$2
+	echo -n "Installing $name, ..."
+	ln -sf $PWD/$name $path
+	echo "Done"
+}
+
+mkdir -p ~/bin
+for f in commit.py cpplint.py upload.py; do
+	install_tool $f ~/bin
+done
+
+install_tool .vimrc ~

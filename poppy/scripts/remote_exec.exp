@@ -1,0 +1,98 @@
+#!/usr/bin/expect -- 
+
+###############################################################################
+# 通过 expect/ssh 实现自动登录或远程执行命令
+# 2005.01 by echoqin
+# Copyright (C) 2005 by tencent
+###############################################################################
+
+set cmd [lindex $argv 0 ]
+
+if { $cmd != "ssh" && $cmd != "scp" && $cmd != "scpfrom" && $cmd != "login" } {
+	puts "Usage: $argv0 cmd(ssh | scp | login) user passwd ip (command outfile | sourcefile destpath)"
+	exit 1
+}
+
+set user [lindex $argv 1]
+set passwd [lindex $argv 2]
+set ip [lindex $argv 3]
+
+proc login { cmdstr } {
+	upvar #0 passwd passwd
+	eval spawn $cmdstr
+	expect { 
+		"assword:" {    	
+			send "$passwd\r"
+			expect -re {[>$]} { send "export LANG=en.US\r" }
+			interact
+		}
+
+		"yes/no)?" {
+			send "yes\r"
+			expect "assword:" {
+				send "$passwd\r"
+				expect -re {[>$]} { send "export LANG=en.US\r" }
+				interact
+			}
+		}
+		
+		"warning*" {
+			puts "\nRETURN WARNING!!!\n"
+			exit 1
+		}
+	
+		timeout {
+			puts "\nCHECK WARNING: $ip logon TIMEOUT!!!\n"
+			exit 1
+		}
+	}
+}
+
+proc run { cmdstr } {
+	upvar #0 passwd passwd
+	eval spawn $cmdstr
+	expect { 
+		"assword:" {    	
+			send "$passwd\r"
+		}
+
+		"yes/no)?" {
+			send "yes\r"
+			expect "assword:" {
+				send "$passwd\r"
+			}
+		}
+		
+		"warning*" {
+			puts "\nRETURN WARNING!!!\n"
+			exit 1
+		}
+	
+		timeout {
+			puts "\nCHECK WARNING: $ip logon TIMEOUT!!!\n"
+			exit 1
+		}
+	}
+	expect eof
+}
+
+set timeout 60
+if { $cmd == "login" } {
+	set cmdstr "ssh $user@$ip -q -p 36000"
+	login $cmdstr
+} elseif { $cmd == "ssh" } {
+	set command [lindex $argv 4]
+	set file [lindex $argv 5]
+	set cmdstr  "ssh $user@$ip -q -p 36000 \"$command\""
+	run $cmdstr
+} elseif { $cmd == "scp" } {
+	set srcfile [lindex $argv 4]
+	set destdir [lindex $argv 5]
+	set cmdstr "scp -P 36000 $srcfile $user@$ip:$destdir"
+	run $cmdstr
+} elseif { $cmd == "scpfrom" } {
+	set destfile [lindex $argv 4]
+	set localdir [lindex $argv 5]
+	set cmdstr "scp -P 36000 -q $user@$ip:$destfile $localdir"
+	run $cmdstr
+}

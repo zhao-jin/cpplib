@@ -1,0 +1,4 @@
+#!/bin/bash
+
+java -classpath .:poppy_java_client.jar:poppy_java_client_test.jar:../../../poppy/java/lib/junit-4.9b3.jar:../../../poppy/java/lib/log4j-1.2.15.jar:../../../poppy/java/lib/netty-3.2.4.Final.jar:../../../poppy/java/lib/protobuf-java-2.3.0.jar:../../../poppy/java/lib/snappy-java-1.0.3.jar:../../../poppy/java/lib/zookeeper-3.3.3.jar com.soso.rpc_examples.PoppyTest
+

@@ -1,0 +1,34 @@
+// Copyright 2011, Tencent Inc.
+// Author: Xiaokang Liu <hsiaokangliu@tencent.com>
+
+import "poppy/rpc_option.proto";
+
+message SearchRequest {
+    required string query = 1;
+    optional string search_location = 2;
+}
+
+message SearchResponse {
+    message Result {
+        required int64 doc_id = 1;
+        optional double score = 3;
+    }
+    repeated Result result = 1;
+}
+
+// The server side serivce.
+service SearchServer {
+    // The service timeout is 5 seconds.
+    option (poppy.service_timeout) = 5000;
+
+    rpc Search(SearchRequest) returns(SearchResponse) {
+        // This method set its timeout to 1 second.
+        option (poppy.method_timeout) = 1000;
+        // If you want to compress request data before sending,
+        // you can specify the option:
+        // option (poppy.request_compress_type) = CompressTypeSnappy;
+    }
+
+    // if method_timeout is not set, it uses service_timeout defaultly.
+    rpc DoDebugSearch(SearchRequest) returns(SearchResponse);
+}

@@ -1,0 +1,11 @@
+// Copyright 2010 Tencent Inc.
+// Author: Yi Wang <yiwang@tencent.com>
+
+package codex; // package common.codex;
+
+// FormatOption describes a format option in a format string.
+message TestProtoMessage {
+    required int64 number = 1;
+    required string text = 2;
+}
+

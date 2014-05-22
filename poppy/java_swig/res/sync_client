@@ -1,0 +1,19 @@
+#!/bin/bash
+
+command_line="java -classpath .:poppy_java_client.jar:poppy_java_client_test.jar:../../../poppy/java_sdk/lib/junit.jar:../../../poppy/java_sdk/lib/log4j.jar:../../../poppy/java_sdk/lib/protobuf-java.jar com.soso.rpc_examples.SyncClient "
+
+
+server_address="127.0.0.1:50000"
+
+if [ "$#" -ge 1 ]; then
+    server_address="$1"
+fi
+
+request_num="10000"
+if [ "$#" -ge 2 ]; then
+    request_num="$2"
+fi
+
+command_line="$command_line $server_address $request_num"
+
+eval $command_line

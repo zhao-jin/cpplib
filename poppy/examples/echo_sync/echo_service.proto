@@ -1,0 +1,43 @@
+// Copyright 2011, Tencent Inc.
+// Author: Hangjun Ye <hansye@tencent.com>
+// Xiaokang Liu <hsiaokangliu@tencent.com>
+// Eric Liu <ericliu@tencent.com>
+
+import "poppy/rpc_option.proto";
+
+package rpc_examples;
+
+message EchoRequest {
+    required string user = 1;
+    required string message = 2;
+    optional int32 i32 = 3;
+    optional uint32 ui32 = 4;
+    optional sint32 si32 = 5;
+    optional fixed32 fix32 = 6;
+    optional sfixed32 sfix32 = 7;
+    optional int64 i64 = 8;
+    optional uint64 ui64 = 9;
+    optional sint64 si64 = 10;
+    optional fixed64 fix64 = 11;
+    optional sfixed64 sfix64 = 12;
+}
+
+message EchoResponse {
+    required string user = 1;
+    required string message = 2;
+    optional int32 i32 = 3;
+    optional uint32 ui32 = 4;
+    optional sint32 si32 = 5;
+    optional fixed32 fix32 = 6;
+    optional sfixed32 sfix32 = 7;
+    optional int64 i64 = 8;
+    optional uint64 ui64 = 9;
+    optional sint64 si64 = 10;
+    optional fixed64 fix64 = 11;
+    optional sfixed64 sfix64 = 12;
+}
+
+// The server side serivce.
+service EchoServer {
+    rpc EchoMessage(EchoRequest) returns(EchoResponse);
+}

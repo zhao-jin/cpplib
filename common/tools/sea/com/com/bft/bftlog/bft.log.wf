@@ -1,0 +1,48 @@
+12-23 15:24:11:  bft. * 47862794492784 * Open process log by----bft. for wf
+========================================================
+12-23 15:25:49:  bft. * 47063514639216 * Open process log by----bft. for wf
+========================================================
+12-23 15:26:50:  bft. * 47862321310576 * Open process log by----bft. for wf
+========================================================
+12-23 15:29:58:  bft. * 47112334445424 * Open process log by----bft. for wf
+========================================================
+12-23 15:33:18:  bft. * 47400394091376 * Open process log by----bft. for wf
+========================================================
+12-23 15:35:26:  bft. * 47906001312624 * Open process log by----bft. for wf
+========================================================
+WARNING: 12-23 15:35:26:  bft. * 47906001312624 ****[BftV1.hpp:476:get]**[Dict.hpp:254:virtual bft::var_ptr_type& bft::Dict::get(const bft::string_type&)]key test is not exist
+	/data2/raymondxie/python/lib/python2.6/site-packages/com-1.0.0.0-py2.6.egg/com/bft/_pybft.so bsl::Exception::Exception() [0x2b91fc7b2d98]<CR>	/data2/raymondxie/python/lib/python2.6/site-packages/com-1.0.0.0-py2.6.egg/com/bft/_pybft.so bsl::BasicException<bsl::KeyNotFoundException, bsl::Exception>::BasicException() [0x2b91fc7ef2b5]<CR>	/data2/raymondxie/python/lib/python2.6/site-packages/com-1.0.0.0-py2.6.egg/com/bft/_pybft.so bsl::KeyNotFoundException::KeyNotFoundException() [0x2b91fc7ef2df]<CR>	/data2/raymondxie/python/lib/python2.6/site-packages/com-1.0.0.0-py2.6.egg/com/bft/_pybft.so bft::Dict::get(bsl::basic_string<char, bsl::pool_allocator<char> > const&) [0x2b91fc811ce2]<CR>	/data2/raymondxie/python/lib/python2.6/site-packages/com-1.0.0.0-py2.6.egg/com/bft/_pybft.so bft::Bft::get(boost::shared_ptr<bft::IVar> const&, bsl::basic_string<char, bsl::pool_allocator<char> > const&, boost::shared_ptr<bft::IVar>&) const [0x2b91fc7b6e39]<CR>	/data2/raymondxie/python/lib/python2.6/site-packages/com-1.0.0.0-py2.6.egg/com/bft/_pybft.so bft::Bft::get(bsl::basic_string<char, bsl::pool_allocator<char> > const&, boost::shared_ptr<bft::IVar>&) const [0x2b91fc7b7051]<CR>	/data2/raymondxie/python/lib/python2.6/site-packages/com-1.0.0.0-py2.6.egg/com/bft/_pybft.so bft::Bft::get(bsl::basic_string<char, bsl::pool_allocator<char> > const&) const [0x2b91fc7b707f]<CR>	/data2/raymondxie/python/lib/python2.6/site-packages/com-1.0.0.0-py2.6.egg/com/bft/_pybft.so bft::BftV1::get(char const*, char**, unsigned long*) [0x2b91fc7ba4dc]<CR>	/data2/raymondxie/python/lib/python2.6/site-packages/com-1.0.0.0-py2.6.egg/com/bft/_pybft.so CBFT::get(char const*, char**, unsigned long*) [0x2b91fc7ba960]<CR>	/data2/raymondxie/python/lib/python2.6/site-packages/com-1.0.0.0-py2.6.egg/com/bft/_pybft.so [0x2b91fc7a97ee]<CR>
+12-23 15:35:53:  bft. * 47235044969328 * Open process log by----bft. for wf
+========================================================
+12-23 15:36:10:  bft. * 47246395980656 * Open process log by----bft. for wf
+========================================================
+12-23 15:36:32:  bft. * 46952109476720 * Open process log by----bft. for wf
+========================================================
+12-23 15:40:12:  bft. * 47228540160880 * Open process log by----bft. for wf
+========================================================
+12-23 15:40:49:  bft. * 47392581303152 * Open process log by----bft. for wf
+========================================================
+12-23 15:44:12:  bft. * 47558866676592 * Open process log by----bft. for wf
+========================================================
+12-23 15:44:26:  bft. * 47146396552048 * Open process log by----bft. for wf
+========================================================
+12-24 11:47:00:  bft. * 47477768334192 * Open process log by----bft. for wf
+========================================================
+02-18 18:34:23:  bft. * 47876329851760 * Open process log by----bft. for wf
+========================================================
+02-18 18:38:32:  bft. * 47161699068784 * Open process log by----bft. for wf
+========================================================
+02-18 18:38:50:  bft. * 47127990918000 * Open process log by----bft. for wf
+========================================================
+02-18 18:41:57:  bft. * 47513446935408 * Open process log by----bft. for wf
+========================================================
+02-18 18:43:41:  bft. * 47791396834160 * Open process log by----bft. for wf
+========================================================
+02-18 19:02:08:  bft. * 47708963064688 * Open process log by----bft. for wf
+========================================================
+02-18 19:02:43:  bft. * 47706129664880 * Open process log by----bft. for wf
+========================================================
+02-18 19:04:02:  bft. * 47006599908208 * Open process log by----bft. for wf
+========================================================
+02-18 19:09:11:  bft. * 47894516390768 * Open process log by----bft. for wf
+========================================================

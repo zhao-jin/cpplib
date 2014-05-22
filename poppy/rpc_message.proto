@@ -1,0 +1,15 @@
+// Copyright 2011, Tencent Inc.
+// Author: Eric Liu <ericliu@tencent.com>
+//    Hsiaokang Liu <hsiaokangliu@tencent.com>
+//   Dongping HUANG <dphuang@tencent.com>
+
+package poppy;
+
+option java_package="com.soso.poppy";
+
+message EmptyRequest {
+}
+
+message EmptyResponse {
+}
+

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VisualStudioToolFile
+	Name="proto"
+	Version="8.00"
+	>
+	<Rules>
+		<CustomBuildRule
+			Name="proto"
+			DisplayName="proto"
+			CommandLine="..\..\..\thirdparty\protobuf\bin\protoc.exe --cpp_out=$(InputDir) --proto_path=$(InputDir)\..  --proto_path=$(InputDir) --proto_path=..\..\..\thirdparty $(InputDir)\rpc_builtin_service.proto $(InputDir)\rpc_channel_option_info.proto $(InputDir)\rpc_client_option_info.proto $(InputDir)\rpc_error_code_info.proto $(InputDir)\rpc_meta_info.proto $(InputDir)\rpc_server_option_info.proto $(InputDir)\..\poppy\rpc_option.proto $(InputDir)\..\poppy\rpc_message.proto $(InputDir)\streaming\streaming_service_info.proto "
+			Outputs="$(InputDir)$(InputName).pb.h;$(InputDir)$(InputName).pb.cc"
+			FileExtensions="*.proto"
+			>
+			<Properties>
+			</Properties>
+		</CustomBuildRule>
+	</Rules>
+</VisualStudioToolFile>

@@ -1,0 +1,30 @@
+// Copyright 2011, Tencent Inc.
+// Author: Hangjun Ye <hansye@tencent.com>
+// Xiaokang Liu <hsiaokangliu@tencent.com>
+//
+// file_service.proto
+
+package poppy.test;
+
+message DownloadFileRequest {
+    optional int64 stream_id = 1;
+    optional string full_path = 2;
+}
+
+message DownloadFileResponse {
+    optional bool successful = 1;
+}
+
+message UploadFileRequest {
+    optional int64 stream_id = 1;
+    optional string full_path = 2;
+}
+
+message UploadFileResponse {
+    optional bool successful = 1;
+}
+
+service FileService {
+    rpc DownloadFile(DownloadFileRequest) returns(DownloadFileResponse);
+    rpc UploadFile(UploadFileRequest) returns(UploadFileResponse);
+}

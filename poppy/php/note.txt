@@ -1,0 +1,36 @@
+php例子运行步骤:
+
+1、安装php，版本要求不低于5.3.8
+2、去thirdparty/swig-2.0.4下安装swig
+   安装可能需要pcre，安装包去http://www.pcre.org下载
+3、去thirdparty/Protobuf-PHP查看note.txt文件安装Console_CommandLine和Benchmark这两个php包
+4、去poppy目录执行blade build ... --generate-php
+5、去build64_release/poppy/examples/echo_sync目录执行./echoserver启动服务器
+6、去poppy/php目录执行sh run_test.sh release 10000启动php客户端
+
+
+问题：
+
+1、有些机器上存在c++版本库冲突
+
+编译链接的时候，链接的c++标准库是/data/gcc4.5.3/lib64/libstdc++.so.6（实际上是libstdc++.so.6.0.14）
+但是，当运行的时候，查找到的c++标准库是/usr/lib64/libstdc++.so.6（实际上是libstdc++.so.6.0.8）
+由于运行的时候c++标准库版本低于链接的时候c++标准库版本，所以poppy的php客户端无法工作。
+解决办法是将/usr/lib64目录下libstdc++.so.6和libstdc++.so.6.0.8删除或者改名。
+
+ericliu@TengDa_10_12_22_200:~/Infra_proj/trunk/src$ ldd build64_release/poppy/php/poppy/poppy_client.so
+        libz.so.1 => /usr/local/lib/libz.so.1 (0x00002ae24f577000)
+        libdl.so.2 => /lib64/libdl.so.2 (0x00002ae24f78f000)
+        libpthread.so.0 => /lib64/libpthread.so.0 (0x00002ae24f893000)
+        libstdc++.so.6 => /data/gcc4.5.3/lib64/libstdc++.so.6 (0x00002ae24f9ad000)
+        libm.so.6 => /lib64/libm.so.6 (0x00002ae24fbb2000)
+        libgcc_s.so.1 => /data/gcc4.5.3/lib64/libgcc_s.so.1 (0x00002ae24fd07000)
+        libc.so.6 => /lib64/libc.so.6 (0x00002ae24fe1d000)
+        /lib64/ld-linux-x86-64.so.2 (0x0000555555554000)
+
+ericliu@TengDa_10_12_22_200:~/Infra_proj/trunk/src$ l /usr/lib/libstdc++.so.6
+lrwxrwxrwx 1 root root 18 2012-04-10 12:31 /usr/lib/libstdc++.so.6 -> libstdc++.so.6.0.8*
+
+ericliu@TengDa_10_12_22_200:~/Infra_proj/trunk/src$ l /data/gcc4.5.3/lib64/libstdc++.so.6
+lrwxrwxrwx 1 root root 19 2012-03-19 17:53 /data/gcc4.5.3/lib64/libstdc++.so.6 -> libstdc++.so.6.0.14*
+

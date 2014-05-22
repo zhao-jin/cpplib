@@ -1,0 +1,169 @@
+<html>
+  <head>
+    <title>Status page</title>
+    </head>
+    <body>
+      Process Name: {{PROCESS_NAME}}<br/>
+      Process Start Time: {{START_TIME}}<br/>
+      Process Elapsed Time: {{ELAPSED_TIME}} seconds<br/>
+
+      {{#CPU_SUCCESS}}
+      Process CPU: {{CPU_USAGE_PERCENT}}%<br/>
+      {{/CPU_SUCCESS}}
+      {{#CPU_ERROR}}
+      Process CPU: not available.<br/>
+      {{/CPU_ERROR}}
+
+      {{#MEMORY_SUCCESS}}
+      Process Virtual Memory: {{VM_SIZE}}.<br/>
+      Process Pysical Memory: {{PM_SIZE}}.<br/>
+      RpcServer Memory: {{MM_SIZE}}.<br/>
+      Processing RpcRequest Memory: {{REQUEST_SIZE}}.<br/>
+      Processing RpcRequest Count: {{REQUEST_COUNT}}.<br/>
+      NetFrame Send Memory: {{NF_SEND_SIZE}}.<br/>
+      NetFrame Recv Memory: {{NF_RECV_SIZE}}.<br/>
+      {{/MEMORY_SUCCESS}}
+      {{#MEMORY_ERROR}}
+      Process memory usage info not available currently.<br/>
+      {{/MEMORY_ERROR}}
+
+      {{#PROFILE}}
+      Profiler is running...<br />
+      Samples gathered: {{SAMPLES_GATHERED}}<br/>
+      {{/PROFILE}}
+
+      <br/>
+      <h3>GLOBAL<h3>
+      <table border=2>
+        <tr>
+          <td><b>Stats variable name</b></td>
+          <td><b>Count in last second</b></td>
+          <td><b>Count in last minute</b></td>
+          <td><b>Count in last hour</b></td>
+          <td><b>Total count</b></td>
+        </tr>
+        {{#GLOBAL_REQUEST_COUNT_ROW}}
+        <tr>
+          <td>{{STATS_VARIABLE_NAME}}</td>
+          <td>{{LAST_SECOND_COUNT}} times</td>
+          <td>{{LAST_MINUTE_COUNT}} times</td>
+          <td>{{LAST_HOUR_COUNT}} times</td>
+          <td>{{TOTAL_COUNT}} times</td>
+        </tr>
+        {{/GLOBAL_REQUEST_COUNT_ROW}}
+      </table>
+      <p></p>
+      <table border=2>
+        <tr>
+          <td><b>Stats variable name</b></td>
+          <td><b>Min/Max/Average value<br/>in last second</b></td>
+          <td><b>Min/Max/Average value<br/>in last minute</b></td>
+          <td><b>Min/Max/Average value<br/>in last hour</b></td>
+          <td><b>Min/Max/Average value<br/>since start</b></td>
+        </tr>
+        <tr>
+          <td>latency</td>
+          <td>{{LAST_SECOND_MIN}}/{{LAST_SECOND_MAX}}/{{LAST_SECOND_AVERAGE}} ms</td>
+          <td>{{LAST_MINUTE_MIN}}/{{LAST_MINUTE_MAX}}/{{LAST_MINUTE_AVERAGE}} ms</td>
+          <td>{{LAST_HOUR_MIN}}/{{LAST_HOUR_MAX}}/{{LAST_HOUR_AVERAGE}} ms</td>
+          <td>{{TOTAL_MIN}}/{{TOTAL_MAX}}/{{TOTAL_AVERAGE}} ms</td>
+        </tr>
+        <tr>
+          <td>rpc queue memory</td>
+          <td>{{RPC_MEMORY_LAST_SECOND_MIN}}/{{RPC_MEMORY_LAST_SECOND_MAX}}/{{RPC_MEMORY_LAST_SECOND_AVERAGE}} B</td>
+          <td>{{RPC_MEMORY_LAST_MINUTE_MIN}}/{{RPC_MEMORY_LAST_MINUTE_MAX}}/{{RPC_MEMORY_LAST_MINUTE_AVERAGE}} B</td>
+          <td>{{RPC_MEMORY_LAST_HOUR_MIN}}/{{RPC_MEMORY_LAST_HOUR_MAX}}/{{RPC_MEMORY_LAST_HOUR_AVERAGE}} B</td>
+          <td>{{RPC_MEMORY_TOTAL_MIN}}/{{RPC_MEMORY_TOTAL_MAX}}/{{RPC_MEMORY_TOTAL_AVERAGE}} B</td>
+        </tr>
+        <tr>
+          <td>net send memory</td>
+          <td>{{NET_SEND_MEMORY_LAST_SECOND_MIN}}/{{NET_SEND_MEMORY_LAST_SECOND_MAX}}/{{NET_SEND_MEMORY_LAST_SECOND_AVERAGE}}</td>
+          <td>{{NET_SEND_MEMORY_LAST_MINUTE_MIN}}/{{NET_SEND_MEMORY_LAST_MINUTE_MAX}}/{{NET_SEND_MEMORY_LAST_MINUTE_AVERAGE}}</td>
+          <td>{{NET_SEND_MEMORY_LAST_HOUR_MIN}}/{{NET_SEND_MEMORY_LAST_HOUR_MAX}}/{{NET_SEND_MEMORY_LAST_HOUR_AVERAGE}}</td>
+          <td>{{NET_SEND_MEMORY_TOTAL_MIN}}/{{NET_SEND_MEMORY_TOTAL_MAX}}/{{NET_SEND_MEMORY_TOTAL_AVERAGE}}</td>
+        </tr>
+        <tr>
+          <td>net recv memory</td>
+          <td>{{NET_RECV_MEMORY_LAST_SECOND_MIN}}/{{NET_RECV_MEMORY_LAST_SECOND_MAX}}/{{NET_RECV_MEMORY_LAST_SECOND_AVERAGE}}</td>
+          <td>{{NET_RECV_MEMORY_LAST_MINUTE_MIN}}/{{NET_RECV_MEMORY_LAST_MINUTE_MAX}}/{{NET_RECV_MEMORY_LAST_MINUTE_AVERAGE}}</td>
+          <td>{{NET_RECV_MEMORY_LAST_HOUR_MIN}}/{{NET_RECV_MEMORY_LAST_HOUR_MAX}}/{{NET_RECV_MEMORY_LAST_HOUR_AVERAGE}}</td>
+          <td>{{NET_RECV_MEMORY_TOTAL_MIN}}/{{NET_RECV_MEMORY_TOTAL_MAX}}/{{NET_RECV_MEMORY_TOTAL_AVERAGE}}</td>
+        </tr>
+      </table>
+
+      {{#USER_ROW}}
+      <h3>USER:{{USER_NAME}}</h3>
+      {{#METHOD_ROW}}
+      <h4>{{METHOD_FULL_NAME}}</h4>
+      <table border=2>
+        <tr>
+          <td><b>Stats variable name</b></td>
+          <td><b>Count in last second</b></td>
+          <td><b>Count in last minute</b></td>
+          <td><b>Count in last hour</b></td>
+          <td><b>Total count</b></td>
+        </tr>
+        {{#REQUEST_COUNT_ROW}}
+        <tr>
+          <td>{{STATS_VARIABLE_NAME}}</td>
+          <td>{{LAST_SECOND_COUNT}} times</td>
+          <td>{{LAST_MINUTE_COUNT}} times</td>
+          <td>{{LAST_HOUR_COUNT}} times</td>
+          <td>{{TOTAL_COUNT}} times</td>
+        </tr>
+        {{/REQUEST_COUNT_ROW}}
+      </table>
+      <p></p>
+      <table border=2>
+        <tr>
+          <td><b>Stats variable name</b></td>
+          <td><b>Min/Max/Average value<br/>in last second</b></td>
+          <td><b>Min/Max/Average value<br/>in last minute</b></td>
+          <td><b>Min/Max/Average value<br/>in last hour</b></td>
+          <td><b>Min/Max/Average value<br/>since start</b></td>
+        </tr>
+        <tr>
+          <td>latency</td>
+          <td>{{LAST_SECOND_MIN}}/{{LAST_SECOND_MAX}}/{{LAST_SECOND_AVERAGE}} ms</td>
+          <td>{{LAST_MINUTE_MIN}}/{{LAST_MINUTE_MAX}}/{{LAST_MINUTE_AVERAGE}} ms</td>
+          <td>{{LAST_HOUR_MIN}}/{{LAST_HOUR_MAX}}/{{LAST_HOUR_AVERAGE}} ms</td>
+          <td>{{TOTAL_MIN}}/{{TOTAL_MAX}}/{{TOTAL_AVERAGE}} ms</td>
+        </tr>
+      </table>
+      <br/>
+      {{/METHOD_ROW}}
+      {{/USER_ROW}}
+
+      <br/>
+
+      <h3>Active Clients</h3>
+      Total active client count : {{CONNECTION_TOTAL_COUNT}}<br/>
+      <table border=2>
+        <tr>
+          <td><b>Client address</b></td>
+          <td><b>RX bytes in last second</b></td>
+          <td><b>RX bytes in last minute</b></td>
+          <td><b>RX bytes in last hour</b></td>
+          <td><b>RX bytes total count</b></td>
+          <td><b>TX bytes in last second</b></td>
+          <td><b>TX bytes in last minute</b></td>
+          <td><b>TX bytes in last hour</b></td>
+          <td><b>TX bytes total count</b></td>
+        </tr>
+        {{#CONNECTION_ROW}}
+        <tr>
+          <td>{{CLIENT_ADDRESS}}</td>
+          <td>{{RX_LAST_SECOND_COUNT}}</td>
+          <td>{{RX_LAST_MINUTE_COUNT}}</td>
+          <td>{{RX_LAST_HOUR_COUNT}}</td>
+          <td>{{RX_TOTAL_COUNT}}</td>
+          <td>{{TX_LAST_SECOND_COUNT}}</td>
+          <td>{{TX_LAST_MINUTE_COUNT}}</td>
+          <td>{{TX_LAST_HOUR_COUNT}}</td>
+          <td>{{TX_TOTAL_COUNT}}</td>
+        </tr>
+        {{/CONNECTION_ROW}}
+      </table>
+    </body>
+  </html>
+

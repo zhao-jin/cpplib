@@ -1,0 +1,23 @@
+// Copyright 2012, Tencent Inc.
+// Author: Mavis Luo <mavisluo@tencent.com>
+
+新的TNS（Torca Naming Service） api 与旧版本相比所做的改动：
+
+1. 原版本zk 相关操作使用的是Torca内部封装的zk api，现在修改成了common zookeeper client；
+2. 原版本TNS接口有两类，pb和struct格式。为了便于扩展，新版本仅保留pb格式；
+3. 原版本有专门的WGetxxx接口，用户去watch TNS节点，并且watcher函数是zookeeper定义的watcher_fn，新版本改成了    和common zk client一致的common::ZookeeperNode::WatcherCallback，并且将是否有watcher统一为一个接口；
+4. 原版本的TNS信息中也包含了task的zk path，新版本去掉了，因为poppy已经支持Torca TNS路径格式，不需要再提供在
+   zk上的原始路径；
+5. 增加了zk proxy的支持。对于没有watcher的应用场景，读取TNS是readonly操作，所以为了减轻对zk server的压力，默   认是连接proxy，只有用户特别指定时，才去连接真正的zk server。
+
+保留了原版本TNS api在一个进程中支持读多个不同集群的TNS信息的特性。
+
+仍然支持无命名和带命名两类端口。举例：
+1. args = --my_ip=%%IP%% --my_port=%%PORT%%
+   这是最简单的场景，由于该task进程只需要一个端口，为了简单，省去了对端口的命名；
+
+2. args = --my_ip=%%IP%% --port_0=%%PORT%%, --port_1=%%PORT%%
+   该task有两个端口，并且以后不会增加，也和task的client协商好了这两个端口的用途，那么client端就可以通过TNS中这两个端口的顺序来区分。注意：这不是一个很好的方式, 如果server端对端口顺序有更改但是没有及时知会给client端，都可能引发一些不必要的问题，强烈建议采用下面的第三种方式--命名端口；
+
+3. args = --my_ip=%%IP%% --port_a=%%PORT:port_for_a%% --port_b=%%PORT:port_for_b%%
+   该task有多个服务端口，可能以后还会增加，为了让client对server端端口顺序的不敏感，对这些端口都起了名字.   我们也强烈建议用户对端口起名字，便于扩展;

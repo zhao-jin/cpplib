@@ -1,0 +1,35 @@
+// Copyright 2011, Tencent Inc.
+// Author: Hangjun Ye <hansye@tencent.com>
+
+import "rpc_option.proto";
+
+option java_package="com.soso.poppy";
+
+package poppy;
+
+message RpcMeta {
+    enum Type {
+        REQUEST = 0;
+        RESPONSE = 1;
+    };
+
+    optional Type type = 1;
+    required int64 sequence_id = 2;
+
+    // Field for request type, tag starts from 100.
+    // The fully-qualified name of the method, scope delimited by periods.
+    // It includes the full name of service.
+    optional string method = 100;
+
+    // Field for response type, tag starts from 200.
+    // If the request failed.
+    optional bool failed = 200;
+    // If the request is canceled by client. If it's set, failed must be set too.
+    optional bool canceled = 201;
+    // Set the error code if failed.
+    optional int32 error_code = 202;
+    // Set the reason if failed.
+    optional string reason = 203;
+    // Set the compress method used.
+    optional CompressType compress_type = 204;
+}

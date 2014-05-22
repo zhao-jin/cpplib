@@ -1,0 +1,57 @@
+// Copyright 2011, Tencent Inc.
+// Author: Hangjun Ye <hansye@tencent.com>
+// Xiaokang Liu <hsiaokangliu@tencent.com>
+
+import "poppy/rpc_option.proto";
+
+package rpc_examples;
+
+option java_package="com.soso.rpc_examples";
+
+enum TestEnum {
+    V1 = 1;
+    V2 = 2;
+}
+
+message NestedMsg {
+    optional int32 id = 1;
+    optional string title = 2;
+    optional string url = 3;
+}
+
+message EchoRequest {
+    required string user = 1;
+    required string message = 2;
+    // optional timeout in milliseconds
+    optional int32  timeout = 3;
+    optional bool flag = 4;
+    optional TestEnum test_enum = 5 [default = V1];
+    optional NestedMsg nested_msg = 6;
+    repeated NestedMsg nested_msgs = 7;
+    repeated int32 rep_int = 8;
+    optional bytes b = 9;
+    repeated bytes bs = 10;
+
+    extensions 100 to 199;
+}
+
+extend EchoRequest {
+    optional string query_ext = 100 [default = "test ext"];
+    optional uint64 long_ext = 101;
+}
+
+message EchoResponse {
+    required string user = 1;
+    required string message = 2;
+}
+
+// The server side serivce.
+service EchoServer {
+    // The service timeout is 2 seconds.
+    option (poppy.service_timeout) = 2000;
+
+    rpc Echo(EchoRequest) returns(EchoResponse);
+    rpc Get(EchoRequest) returns(EchoResponse);
+    rpc Set(EchoRequest) returns(EchoResponse);
+}
+

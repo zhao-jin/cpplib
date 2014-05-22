@@ -1,0 +1,25 @@
+// Copyright 2012, Tencent Inc.
+// Author: Mavis Luo <mavisluo@tencent.com>
+
+package common.tns;
+
+message NamedPort {
+    required string port_name = 1;
+    required uint32 port = 2;
+}
+
+// Task TNS info.
+message TaskTNS {
+    required uint32 task_id = 1;
+    // ES ip of the task.
+    optional string ip = 2;
+    // The ports without names.
+    repeated uint32 ports = 4;
+    // The nameed ports.
+    repeated NamedPort named_ports = 5;
+}
+
+// Job TNS info.
+message JobTNS {
+    repeated TaskTNS task_tns = 1;
+}

@@ -1,0 +1,32 @@
+Q: 我的客户端怎么连不上服务？
+A: 这个可能性很多，不好预测。但第一步你可以做的是，用telnet工具验证一下，服务器地址是否可达。
+   比如 telnet 10.168.0.231 5000
+
+Q: java和java_sdk分别是什么？
+A: poppy的java客户端有两个实现，分别在java和java_sdk子目录里。
+   1) java目录中的实现是native的java实现。接口跟c++版本基本一致。好处是可以同时在windows和linux平台下运行，这样，在windows平台下用eclipse开发的同事可以用这个。其缺点是，这个版本运行的不如c++版本多，没有被大规模考验。
+   2）java_sdk里面的版本，是基于swig的实现。swig利用了jni技术，将调用代理给了c++版本的poppy客户端。c++版本客户端已经被大量使用和验证，相对比较稳定。其缺点是这个只能在linux平台下运行。
+   3) 欢迎使用任何一个版本，在使用任何一个版本的过程中遇到bug，我们都会及时处理。
+
+Q: 如何编译java_sdk里面的代码？
+A: 1) 确认poppy目录下的BUILD文件中被注释掉的swig部分被打开.
+   2) 把java_sdk/BUILD里面注释掉的部分打开
+   3) 把java_sdk/lib/BUILD里面注释掉的部分打开
+   4) 在java_sdk目录下运行blade命令
+
+Q: 如何运行java测试程序？
+A: 在java_sdk/res/目录下有几个简单的脚本文件和说明，请参考。
+   java这边只做了客户端，所以请确定c++版本的server正在运行。
+
+Q: 如何在我的项目里面用java客户端？
+A: 编译之后，在build64_debug/build64_release的相应子目录里面，能找到jar文件，poppy_java_client.jar和poppy_java_client_test.jar，前者供用户使用，后者里面除了前者包含内容之外，还有一些poppy自己的测试代码。
+
+Q: 为什么需要在proto文件里设置option java_package？
+A: protobuf里面有个概念叫package，相当于c++的namespace或者java的package。这个package，在protobuf里面起了一个命名空间的作用，它成了rpc service名称的一部分。这个service名称，包括路径，在server端会做严格的匹配。
+   这就有一个问题了，java里面对package有自己另外的要求，我们有时候希望protobuf生成的java文件属于某一个package，方便我们使用和管理。java_option就是做这个用途的。在满足了rpc service对路径的要求的同时，让我们可以将生成的java代码放到某个java package里面。
+   这里有一点需要注意，protobuf生成的java文件，单单更改文件头的package行不通，里面还有其他的检查。
+   下面的片段来自poppy附带的测试程序。
+        package rpc_examples;
+        option java_package="com.soso.poppy";
+
+

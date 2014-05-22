@@ -1,0 +1,28 @@
+// Copyright 2011, Tencent Inc.
+// Author: Hangjun Ye <hansye@tencent.com>
+// Xiaokang Liu <hsiaokangliu@tencent.com>
+// Eric Liu <ericliu@tencent.com>
+
+import "poppy/rpc_option.proto";
+import "poppy/rpc_message.proto";
+
+package rpc_examples;
+
+message EchoRequest {
+    required string user = 1;
+    required string message = 2;
+}
+
+message EchoResponse {
+    required string user = 1;
+    required string message = 2;
+}
+
+// The server side serivce.
+service EchoServer {
+    // empty message or empty return methods.
+    rpc EmptyParamEcho(poppy.EmptyRequest) returns(EchoResponse);
+    rpc EmptyReturnEcho(EchoRequest) returns(poppy.EmptyResponse);
+    rpc EmptyEcho(poppy.EmptyRequest) returns(poppy.EmptyResponse);
+}
+

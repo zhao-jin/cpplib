@@ -1,0 +1,286 @@
+2010-12-23 11:57:04,005 INFO [TClient] inited. ---> net.py __init__ 500 
+2010-12-23 11:57:04,006 INFO [TServer] ('0.0.0.0', 8889),fd:3 inited. ---> net.py start 336 
+2010-12-23 11:57:04,007 INFO [TServer] started. Service ThreadName:Thread-1 ---> net.py start 345 
+2010-12-23 11:57:04,012 INFO [TClient] begin to send 3 bytes from fd:8 ... ---> net.py send 61 
+2010-12-23 11:57:04,012 INFO [TClient] send 3 bytes succ. ---> net.py send 81 
+2010-12-23 11:57:04,013 INFO [TServer] running...  ---> net.py Selector 429 
+2010-12-23 11:57:04,014 INFO [TServer] Get connection from:('127.0.0.1', 46053),fd:4 ---> net.py Selector 439 
+2010-12-23 11:57:04,015 INFO [TServer] close the connection from:('127.0.0.1', 46053), fd:4 ---> net.py Selector 447 
+2010-12-23 11:57:04,015 INFO [TServer] socket:4 closed ---> net.py closeSocket 351 
+2010-12-23 11:57:07,011 INFO [TServer] ('0.0.0.0', 8888),fd:4 inited. ---> net.py start 336 
+2010-12-23 11:57:07,012 INFO [TServer] started. Service ThreadName:Thread-2 ---> net.py start 345 
+2010-12-23 11:57:07,013 INFO [TServer] running...  ---> net.py Selector 429 
+2010-12-23 11:57:07,013 INFO [TClient] inited. ---> net.py __init__ 500 
+2010-12-23 11:57:07,015 INFO [TClient] begin to send 21 bytes from fd:8 ... ---> net.py send 61 
+2010-12-23 11:57:07,016 INFO [TClient] send 21 bytes succ. ---> net.py send 81 
+2010-12-23 11:57:07,016 INFO [TServer] Get connection from:('127.0.0.1', 48853),fd:9 ---> net.py Selector 439 
+2010-12-23 11:57:07,017 INFO [TServer] begin to recv 16 bytes from fd:9 ... ---> net.py recv 96 
+2010-12-23 11:57:07,017 INFO [TServer] recv 16 bytes succ. ---> net.py recv 122 
+2010-12-23 11:57:07,018 INFO [TServer] begin to recv 5 bytes from fd:9 ... ---> net.py recv 96 
+2010-12-23 11:57:07,019 INFO [TServer] recv 5 bytes succ. ---> net.py recv 122 
+2010-12-23 11:57:07,020 INFO [TServer] close the connection from:('127.0.0.1', 48853), fd:9 ---> net.py Selector 447 
+2010-12-23 11:57:07,020 INFO [TServer] socket:9 closed ---> net.py closeSocket 351 
+2010-12-23 11:59:08,555 INFO [TClient] inited. ---> net.py __init__ 500 
+2010-12-23 11:59:08,556 INFO [TServer] ('0.0.0.0', 8889),fd:3 inited. ---> net.py start 336 
+2010-12-23 11:59:08,556 INFO [TServer] started. Service ThreadName:Thread-1 ---> net.py start 345 
+2010-12-23 11:59:08,558 INFO [TServer] running...  ---> net.py Selector 429 
+2010-12-23 11:59:08,562 INFO [TClient] begin to send 3 bytes from fd:7 ... ---> net.py send 61 
+2010-12-23 11:59:08,562 INFO [TClient] send 3 bytes succ. ---> net.py send 81 
+2010-12-23 11:59:08,563 INFO [TServer] Get connection from:('127.0.0.1', 32868),fd:8 ---> net.py Selector 439 
+2010-12-23 11:59:08,564 INFO [TServer] close the connection from:('127.0.0.1', 32868), fd:8 ---> net.py Selector 447 
+2010-12-23 11:59:08,564 INFO [TServer] socket:8 closed ---> net.py closeSocket 351 
+2010-12-23 11:59:11,562 INFO [TServer] ('0.0.0.0', 8888),fd:7 inited. ---> net.py start 336 
+2010-12-23 11:59:11,563 INFO [TServer] started. Service ThreadName:Thread-2 ---> net.py start 345 
+2010-12-23 11:59:11,564 INFO [TServer] running...  ---> net.py Selector 429 
+2010-12-23 11:59:11,565 INFO [TClient] inited. ---> net.py __init__ 500 
+2010-12-23 11:59:11,566 INFO [TClient] begin to send 21 bytes from fd:8 ... ---> net.py send 61 
+2010-12-23 11:59:11,567 INFO [TClient] send 21 bytes succ. ---> net.py send 81 
+2010-12-23 11:59:11,567 INFO [TServer] Get connection from:('127.0.0.1', 54981),fd:9 ---> net.py Selector 439 
+2010-12-23 11:59:11,568 INFO [TServer] begin to recv 16 bytes from fd:9 ... ---> net.py recv 96 
+2010-12-23 11:59:11,569 INFO [TServer] recv 16 bytes succ. ---> net.py recv 122 
+2010-12-23 11:59:11,570 INFO [TServer] begin to recv 5 bytes from fd:9 ... ---> net.py recv 96 
+2010-12-23 11:59:11,570 INFO [TServer] recv 5 bytes succ. ---> net.py recv 122 
+2010-12-23 11:59:11,571 INFO [TServer] close the connection from:('127.0.0.1', 54981), fd:9 ---> net.py Selector 447 
+2010-12-23 11:59:11,572 INFO [TServer] socket:9 closed ---> net.py closeSocket 351 
+2010-12-23 16:04:55,490 INFO [TClient] inited. ---> net.py __init__ 500 
+2010-12-23 16:04:55,496 INFO [TServer] ('0.0.0.0', 8889),fd:3 inited. ---> net.py start 336 
+2010-12-23 16:04:55,497 INFO [TServer] started. Service ThreadName:Thread-1 ---> net.py start 345 
+2010-12-23 16:04:55,526 INFO [TClient] begin to send 3 bytes from fd:8 ... ---> net.py send 61 
+2010-12-23 16:04:55,527 INFO [TClient] send 3 bytes succ. ---> net.py send 81 
+2010-12-23 16:04:55,527 INFO [TServer] running...  ---> net.py Selector 429 
+2010-12-23 16:04:55,528 INFO [TServer] Get connection from:('127.0.0.1', 41563),fd:4 ---> net.py Selector 439 
+2010-12-23 16:04:55,529 INFO [TServer] close the connection from:('127.0.0.1', 41563), fd:4 ---> net.py Selector 447 
+2010-12-23 16:04:55,529 INFO [TServer] socket:4 closed ---> net.py closeSocket 351 
+2010-12-23 16:04:58,528 INFO [TServer] ('0.0.0.0', 8888),fd:4 inited. ---> net.py start 336 
+2010-12-23 16:04:58,529 INFO [TServer] started. Service ThreadName:Thread-2 ---> net.py start 345 
+2010-12-23 16:04:58,530 INFO [TServer] running...  ---> net.py Selector 429 
+2010-12-23 16:04:58,530 INFO [TClient] inited. ---> net.py __init__ 500 
+2010-12-23 16:04:58,538 INFO [TClient] begin to send 21 bytes from fd:8 ... ---> net.py send 61 
+2010-12-23 16:04:58,539 INFO [TClient] send 21 bytes succ. ---> net.py send 81 
+2010-12-23 16:04:58,540 INFO [TServer] Get connection from:('127.0.0.1', 57701),fd:9 ---> net.py Selector 439 
+2010-12-23 16:04:58,541 INFO [TServer] begin to recv 16 bytes from fd:9 ... ---> net.py recv 96 
+2010-12-23 16:04:58,541 INFO [TServer] recv 16 bytes succ. ---> net.py recv 122 
+2010-12-23 16:04:58,542 INFO [TServer] begin to recv 5 bytes from fd:9 ... ---> net.py recv 96 
+2010-12-23 16:04:58,543 INFO [TServer] recv 5 bytes succ. ---> net.py recv 122 
+2010-12-23 16:04:58,544 INFO [TServer] close the connection from:('127.0.0.1', 57701), fd:9 ---> net.py Selector 447 
+2010-12-23 16:04:58,545 INFO [TServer] socket:9 closed ---> net.py closeSocket 351 
+2010-12-24 11:46:44,858 INFO [TClient] inited. ---> net.py __init__ 502 
+2010-12-24 11:46:44,865 INFO [TServer] ('0.0.0.0', 8889),fd:3 inited. ---> net.py start 338 
+2010-12-24 11:46:44,866 INFO [TServer] started. Service ThreadName:Thread-1 ---> net.py start 347 
+2010-12-24 11:46:44,878 INFO [TClient] begin to send 3 bytes from fd:7 ... ---> net.py send 63 
+2010-12-24 11:46:44,878 INFO [TClient] send 3 bytes succ. ---> net.py send 83 
+2010-12-24 11:46:44,884 INFO [TServer] running...  ---> net.py Selector 431 
+2010-12-24 11:46:44,884 INFO [TServer] Get connection from:('127.0.0.1', 37744),fd:8 ---> net.py Selector 441 
+2010-12-24 11:46:44,885 INFO [TServer] close the connection from:('127.0.0.1', 37744), fd:8 ---> net.py Selector 449 
+2010-12-24 11:46:44,886 INFO [TServer] socket:8 closed ---> net.py closeSocket 353 
+2010-12-24 11:46:47,879 INFO [TServer] ('0.0.0.0', 8888),fd:7 inited. ---> net.py start 338 
+2010-12-24 11:46:47,879 INFO [TServer] started. Service ThreadName:Thread-2 ---> net.py start 347 
+2010-12-24 11:46:47,880 INFO [TServer] running...  ---> net.py Selector 431 
+2010-12-24 11:46:47,881 INFO [TClient] inited. ---> net.py __init__ 502 
+2010-12-24 11:46:47,882 INFO [TClient] begin to send 21 bytes from fd:8 ... ---> net.py send 63 
+2010-12-24 11:46:47,883 INFO [TClient] send 21 bytes succ. ---> net.py send 83 
+2010-12-24 11:46:47,884 INFO [TServer] Get connection from:('127.0.0.1', 49181),fd:9 ---> net.py Selector 441 
+2010-12-24 11:46:47,885 INFO [TServer] begin to recv 16 bytes from fd:9 ... ---> net.py recv 98 
+2010-12-24 11:46:47,885 INFO [TServer] recv 16 bytes succ. ---> net.py recv 124 
+2010-12-24 11:46:47,886 INFO [TServer] begin to recv 5 bytes from fd:9 ... ---> net.py recv 98 
+2010-12-24 11:46:47,886 INFO [TServer] recv 5 bytes succ. ---> net.py recv 124 
+2010-12-24 11:46:47,887 INFO [TServer] close the connection from:('127.0.0.1', 49181), fd:9 ---> net.py Selector 449 
+2010-12-24 11:46:47,888 INFO [TServer] socket:9 closed ---> net.py closeSocket 353 
+2011-02-18 18:34:18,538 INFO [TClient] inited. ---> net.py __init__ 502 
+2011-02-18 18:34:18,540 INFO [TServer] ('0.0.0.0', 8889),fd:3 inited. ---> net.py start 338 
+2011-02-18 18:34:18,540 INFO [TServer] started. Service ThreadName:Thread-1 ---> net.py start 347 
+2011-02-18 18:34:18,548 INFO [TClient] begin to send 3 bytes from fd:7 ... ---> net.py send 63 
+2011-02-18 18:34:18,548 INFO [TClient] send 3 bytes succ. ---> net.py send 83 
+2011-02-18 18:34:18,552 INFO [TServer] running...  ---> net.py Selector 431 
+2011-02-18 18:34:18,553 INFO [TServer] Get connection from:('127.0.0.1', 46476),fd:8 ---> net.py Selector 441 
+2011-02-18 18:34:18,554 INFO [TServer] close the connection from:('127.0.0.1', 46476), fd:8 ---> net.py Selector 449 
+2011-02-18 18:34:18,554 INFO [TServer] socket:8 closed ---> net.py closeSocket 353 
+2011-02-18 18:34:21,550 INFO [TServer] ('0.0.0.0', 8888),fd:7 inited. ---> net.py start 338 
+2011-02-18 18:34:21,550 INFO [TServer] started. Service ThreadName:Thread-2 ---> net.py start 347 
+2011-02-18 18:34:21,551 INFO [TServer] running...  ---> net.py Selector 431 
+2011-02-18 18:34:21,552 INFO [TClient] inited. ---> net.py __init__ 502 
+2011-02-18 18:34:21,553 INFO [TClient] begin to send 21 bytes from fd:8 ... ---> net.py send 63 
+2011-02-18 18:34:21,554 INFO [TClient] send 21 bytes succ. ---> net.py send 83 
+2011-02-18 18:34:21,555 INFO [TServer] Get connection from:('127.0.0.1', 39600),fd:9 ---> net.py Selector 441 
+2011-02-18 18:34:21,556 INFO [TServer] begin to recv 16 bytes from fd:9 ... ---> net.py recv 98 
+2011-02-18 18:34:21,556 INFO [TServer] recv 16 bytes succ. ---> net.py recv 124 
+2011-02-18 18:34:21,557 INFO [TServer] begin to recv 5 bytes from fd:9 ... ---> net.py recv 98 
+2011-02-18 18:34:21,557 INFO [TServer] recv 5 bytes succ. ---> net.py recv 124 
+2011-02-18 18:34:21,558 INFO [TServer] close the connection from:('127.0.0.1', 39600), fd:9 ---> net.py Selector 449 
+2011-02-18 18:34:21,559 INFO [TServer] socket:9 closed ---> net.py closeSocket 353 
+2011-02-18 18:38:27,355 INFO [TClient] inited. ---> net.py __init__ 502 
+2011-02-18 18:38:27,356 INFO [TServer] ('0.0.0.0', 8889),fd:3 inited. ---> net.py start 338 
+2011-02-18 18:38:27,357 INFO [TServer] started. Service ThreadName:Thread-1 ---> net.py start 347 
+2011-02-18 18:38:27,358 INFO [TServer] running...  ---> net.py Selector 431 
+2011-02-18 18:38:27,362 INFO [TClient] begin to send 3 bytes from fd:7 ... ---> net.py send 63 
+2011-02-18 18:38:27,363 INFO [TClient] send 3 bytes succ. ---> net.py send 83 
+2011-02-18 18:38:27,363 INFO [TServer] Get connection from:('127.0.0.1', 42409),fd:8 ---> net.py Selector 441 
+2011-02-18 18:38:27,364 INFO [TServer] close the connection from:('127.0.0.1', 42409), fd:8 ---> net.py Selector 449 
+2011-02-18 18:38:27,364 INFO [TServer] socket:8 closed ---> net.py closeSocket 353 
+2011-02-18 18:38:30,364 INFO [TServer] ('0.0.0.0', 8888),fd:7 inited. ---> net.py start 338 
+2011-02-18 18:38:30,365 INFO [TServer] started. Service ThreadName:Thread-2 ---> net.py start 347 
+2011-02-18 18:38:30,366 INFO [TServer] running...  ---> net.py Selector 431 
+2011-02-18 18:38:30,367 INFO [TClient] inited. ---> net.py __init__ 502 
+2011-02-18 18:38:30,368 INFO [TClient] begin to send 21 bytes from fd:8 ... ---> net.py send 63 
+2011-02-18 18:38:30,369 INFO [TClient] send 21 bytes succ. ---> net.py send 83 
+2011-02-18 18:38:30,369 INFO [TServer] Get connection from:('127.0.0.1', 53995),fd:9 ---> net.py Selector 441 
+2011-02-18 18:38:30,370 INFO [TServer] begin to recv 16 bytes from fd:9 ... ---> net.py recv 98 
+2011-02-18 18:38:30,371 INFO [TServer] recv 16 bytes succ. ---> net.py recv 124 
+2011-02-18 18:38:30,371 INFO [TServer] begin to recv 5 bytes from fd:9 ... ---> net.py recv 98 
+2011-02-18 18:38:30,372 INFO [TServer] recv 5 bytes succ. ---> net.py recv 124 
+2011-02-18 18:38:30,373 INFO [TServer] close the connection from:('127.0.0.1', 53995), fd:9 ---> net.py Selector 449 
+2011-02-18 18:38:30,373 INFO [TServer] socket:9 closed ---> net.py closeSocket 353 
+2011-02-18 18:38:45,164 INFO [TClient] inited. ---> net.py __init__ 502 
+2011-02-18 18:38:45,165 INFO [TServer] ('0.0.0.0', 8889),fd:3 inited. ---> net.py start 338 
+2011-02-18 18:38:45,166 INFO [TServer] started. Service ThreadName:Thread-1 ---> net.py start 347 
+2011-02-18 18:38:45,168 INFO [TServer] running...  ---> net.py Selector 431 
+2011-02-18 18:38:45,171 INFO [TClient] begin to send 3 bytes from fd:7 ... ---> net.py send 63 
+2011-02-18 18:38:45,172 INFO [TClient] send 3 bytes succ. ---> net.py send 83 
+2011-02-18 18:38:45,172 INFO [TServer] Get connection from:('127.0.0.1', 42411),fd:8 ---> net.py Selector 441 
+2011-02-18 18:38:45,173 INFO [TServer] close the connection from:('127.0.0.1', 42411), fd:8 ---> net.py Selector 449 
+2011-02-18 18:38:45,173 INFO [TServer] socket:8 closed ---> net.py closeSocket 353 
+2011-02-18 18:38:48,172 INFO [TServer] ('0.0.0.0', 8888),fd:7 inited. ---> net.py start 338 
+2011-02-18 18:38:48,173 INFO [TServer] started. Service ThreadName:Thread-2 ---> net.py start 347 
+2011-02-18 18:38:48,174 INFO [TServer] running...  ---> net.py Selector 431 
+2011-02-18 18:38:48,174 INFO [TClient] inited. ---> net.py __init__ 502 
+2011-02-18 18:38:48,176 INFO [TClient] begin to send 21 bytes from fd:8 ... ---> net.py send 63 
+2011-02-18 18:38:48,176 INFO [TClient] send 21 bytes succ. ---> net.py send 83 
+2011-02-18 18:38:48,177 INFO [TServer] Get connection from:('127.0.0.1', 53997),fd:9 ---> net.py Selector 441 
+2011-02-18 18:38:48,178 INFO [TServer] begin to recv 16 bytes from fd:9 ... ---> net.py recv 98 
+2011-02-18 18:38:48,178 INFO [TServer] recv 16 bytes succ. ---> net.py recv 124 
+2011-02-18 18:38:48,179 INFO [TServer] begin to recv 5 bytes from fd:9 ... ---> net.py recv 98 
+2011-02-18 18:38:48,179 INFO [TServer] recv 5 bytes succ. ---> net.py recv 124 
+2011-02-18 18:38:48,180 INFO [TServer] close the connection from:('127.0.0.1', 53997), fd:9 ---> net.py Selector 449 
+2011-02-18 18:38:48,181 INFO [TServer] socket:9 closed ---> net.py closeSocket 353 
+2011-02-18 18:41:52,849 INFO [TClient] inited. ---> net.py __init__ 502 
+2011-02-18 18:41:52,850 INFO [TServer] ('0.0.0.0', 8889),fd:3 inited. ---> net.py start 338 
+2011-02-18 18:41:52,851 INFO [TServer] started. Service ThreadName:Thread-1 ---> net.py start 347 
+2011-02-18 18:41:52,853 INFO [TServer] running...  ---> net.py Selector 431 
+2011-02-18 18:41:52,856 INFO [TClient] begin to send 3 bytes from fd:7 ... ---> net.py send 63 
+2011-02-18 18:41:52,857 INFO [TClient] send 3 bytes succ. ---> net.py send 83 
+2011-02-18 18:41:52,857 INFO [TServer] Get connection from:('127.0.0.1', 42325),fd:8 ---> net.py Selector 441 
+2011-02-18 18:41:52,858 INFO [TServer] close the connection from:('127.0.0.1', 42325), fd:8 ---> net.py Selector 449 
+2011-02-18 18:41:52,859 INFO [TServer] socket:8 closed ---> net.py closeSocket 353 
+2011-02-18 18:41:55,859 INFO [TServer] ('0.0.0.0', 8888),fd:7 inited. ---> net.py start 338 
+2011-02-18 18:41:55,860 INFO [TServer] started. Service ThreadName:Thread-2 ---> net.py start 347 
+2011-02-18 18:41:55,861 INFO [TServer] running...  ---> net.py Selector 431 
+2011-02-18 18:41:55,862 INFO [TClient] inited. ---> net.py __init__ 502 
+2011-02-18 18:41:55,863 INFO [TClient] begin to send 21 bytes from fd:8 ... ---> net.py send 63 
+2011-02-18 18:41:55,864 INFO [TClient] send 21 bytes succ. ---> net.py send 83 
+2011-02-18 18:41:55,865 INFO [TServer] Get connection from:('127.0.0.1', 40655),fd:9 ---> net.py Selector 441 
+2011-02-18 18:41:55,865 INFO [TServer] begin to recv 16 bytes from fd:9 ... ---> net.py recv 98 
+2011-02-18 18:41:55,866 INFO [TServer] recv 16 bytes succ. ---> net.py recv 124 
+2011-02-18 18:41:55,867 INFO [TServer] begin to recv 5 bytes from fd:9 ... ---> net.py recv 98 
+2011-02-18 18:41:55,867 INFO [TServer] recv 5 bytes succ. ---> net.py recv 124 
+2011-02-18 18:41:55,868 INFO [TServer] close the connection from:('127.0.0.1', 40655), fd:9 ---> net.py Selector 449 
+2011-02-18 18:41:55,869 INFO [TServer] socket:9 closed ---> net.py closeSocket 353 
+2011-02-18 18:43:36,374 INFO [TClient] inited. ---> net.py __init__ 502 
+2011-02-18 18:43:36,375 INFO [TServer] ('0.0.0.0', 8889),fd:3 inited. ---> net.py start 338 
+2011-02-18 18:43:36,375 INFO [TServer] started. Service ThreadName:Thread-1 ---> net.py start 347 
+2011-02-18 18:43:36,377 INFO [TServer] running...  ---> net.py Selector 431 
+2011-02-18 18:43:36,380 INFO [TClient] begin to send 3 bytes from fd:7 ... ---> net.py send 63 
+2011-02-18 18:43:36,381 INFO [TClient] send 3 bytes succ. ---> net.py send 83 
+2011-02-18 18:43:36,382 INFO [TServer] Get connection from:('127.0.0.1', 42343),fd:8 ---> net.py Selector 441 
+2011-02-18 18:43:36,382 INFO [TServer] close the connection from:('127.0.0.1', 42343), fd:8 ---> net.py Selector 449 
+2011-02-18 18:43:36,383 INFO [TServer] socket:8 closed ---> net.py closeSocket 353 
+2011-02-18 18:43:39,383 INFO [TServer] ('0.0.0.0', 8888),fd:7 inited. ---> net.py start 338 
+2011-02-18 18:43:39,384 INFO [TServer] started. Service ThreadName:Thread-2 ---> net.py start 347 
+2011-02-18 18:43:39,385 INFO [TServer] running...  ---> net.py Selector 431 
+2011-02-18 18:43:39,385 INFO [TClient] inited. ---> net.py __init__ 502 
+2011-02-18 18:43:39,387 INFO [TClient] begin to send 21 bytes from fd:8 ... ---> net.py send 63 
+2011-02-18 18:43:39,388 INFO [TClient] send 21 bytes succ. ---> net.py send 83 
+2011-02-18 18:43:39,388 INFO [TServer] Get connection from:('127.0.0.1', 40673),fd:9 ---> net.py Selector 441 
+2011-02-18 18:43:39,389 INFO [TServer] begin to recv 16 bytes from fd:9 ... ---> net.py recv 98 
+2011-02-18 18:43:39,390 INFO [TServer] recv 16 bytes succ. ---> net.py recv 124 
+2011-02-18 18:43:39,390 INFO [TServer] begin to recv 5 bytes from fd:9 ... ---> net.py recv 98 
+2011-02-18 18:43:39,391 INFO [TServer] recv 5 bytes succ. ---> net.py recv 124 
+2011-02-18 18:43:39,392 INFO [TServer] close the connection from:('127.0.0.1', 40673), fd:9 ---> net.py Selector 449 
+2011-02-18 18:43:39,392 INFO [TServer] socket:9 closed ---> net.py closeSocket 353 
+2011-02-18 19:02:03,150 INFO [TClient] inited. ---> net.py __init__ 502 
+2011-02-18 19:02:03,151 INFO [TServer] ('0.0.0.0', 8889),fd:3 inited. ---> net.py start 338 
+2011-02-18 19:02:03,152 INFO [TServer] started. Service ThreadName:Thread-1 ---> net.py start 347 
+2011-02-18 19:02:03,153 INFO [TServer] running...  ---> net.py Selector 431 
+2011-02-18 19:02:03,157 INFO [TClient] begin to send 3 bytes from fd:7 ... ---> net.py send 63 
+2011-02-18 19:02:03,158 INFO [TClient] send 3 bytes succ. ---> net.py send 83 
+2011-02-18 19:02:03,158 INFO [TServer] Get connection from:('127.0.0.1', 41437),fd:8 ---> net.py Selector 441 
+2011-02-18 19:02:03,159 INFO [TServer] close the connection from:('127.0.0.1', 41437), fd:8 ---> net.py Selector 449 
+2011-02-18 19:02:03,159 INFO [TServer] socket:8 closed ---> net.py closeSocket 353 
+2011-02-18 19:02:06,158 INFO [TServer] ('0.0.0.0', 8888),fd:7 inited. ---> net.py start 338 
+2011-02-18 19:02:06,159 INFO [TServer] started. Service ThreadName:Thread-2 ---> net.py start 347 
+2011-02-18 19:02:06,159 INFO [TServer] running...  ---> net.py Selector 431 
+2011-02-18 19:02:06,160 INFO [TClient] inited. ---> net.py __init__ 502 
+2011-02-18 19:02:06,161 INFO [TClient] begin to send 21 bytes from fd:8 ... ---> net.py send 63 
+2011-02-18 19:02:06,162 INFO [TClient] send 21 bytes succ. ---> net.py send 83 
+2011-02-18 19:02:06,163 INFO [TServer] Get connection from:('127.0.0.1', 43909),fd:9 ---> net.py Selector 441 
+2011-02-18 19:02:06,163 INFO [TServer] begin to recv 16 bytes from fd:9 ... ---> net.py recv 98 
+2011-02-18 19:02:06,164 INFO [TServer] recv 16 bytes succ. ---> net.py recv 124 
+2011-02-18 19:02:06,165 INFO [TServer] begin to recv 5 bytes from fd:9 ... ---> net.py recv 98 
+2011-02-18 19:02:06,165 INFO [TServer] recv 5 bytes succ. ---> net.py recv 124 
+2011-02-18 19:02:06,166 INFO [TServer] close the connection from:('127.0.0.1', 43909), fd:9 ---> net.py Selector 449 
+2011-02-18 19:02:06,167 INFO [TServer] socket:9 closed ---> net.py closeSocket 353 
+2011-02-18 19:02:38,506 INFO [TClient] inited. ---> net.py __init__ 502 
+2011-02-18 19:02:38,507 INFO [TServer] ('0.0.0.0', 8889),fd:3 inited. ---> net.py start 338 
+2011-02-18 19:02:38,508 INFO [TServer] started. Service ThreadName:Thread-1 ---> net.py start 347 
+2011-02-18 19:02:38,513 INFO [TClient] begin to send 3 bytes from fd:7 ... ---> net.py send 63 
+2011-02-18 19:02:38,513 INFO [TServer] running...  ---> net.py Selector 431 
+2011-02-18 19:02:38,514 INFO [TServer] Get connection from:('127.0.0.1', 41443),fd:8 ---> net.py Selector 441 
+2011-02-18 19:02:38,515 INFO [TClient] send 3 bytes succ. ---> net.py send 83 
+2011-02-18 19:02:38,515 INFO [TServer] close the connection from:('127.0.0.1', 41443), fd:8 ---> net.py Selector 449 
+2011-02-18 19:02:38,516 INFO [TServer] socket:8 closed ---> net.py closeSocket 353 
+2011-02-18 19:02:41,513 INFO [TServer] ('0.0.0.0', 8888),fd:7 inited. ---> net.py start 338 
+2011-02-18 19:02:41,514 INFO [TServer] started. Service ThreadName:Thread-2 ---> net.py start 347 
+2011-02-18 19:02:41,515 INFO [TServer] running...  ---> net.py Selector 431 
+2011-02-18 19:02:41,516 INFO [TClient] inited. ---> net.py __init__ 502 
+2011-02-18 19:02:41,517 INFO [TClient] begin to send 21 bytes from fd:8 ... ---> net.py send 63 
+2011-02-18 19:02:41,518 INFO [TClient] send 21 bytes succ. ---> net.py send 83 
+2011-02-18 19:02:41,518 INFO [TServer] Get connection from:('127.0.0.1', 43915),fd:9 ---> net.py Selector 441 
+2011-02-18 19:02:41,519 INFO [TServer] begin to recv 16 bytes from fd:9 ... ---> net.py recv 98 
+2011-02-18 19:02:41,520 INFO [TServer] recv 16 bytes succ. ---> net.py recv 124 
+2011-02-18 19:02:41,520 INFO [TServer] begin to recv 5 bytes from fd:9 ... ---> net.py recv 98 
+2011-02-18 19:02:41,521 INFO [TServer] recv 5 bytes succ. ---> net.py recv 124 
+2011-02-18 19:02:41,522 INFO [TServer] close the connection from:('127.0.0.1', 43915), fd:9 ---> net.py Selector 449 
+2011-02-18 19:02:41,522 INFO [TServer] socket:9 closed ---> net.py closeSocket 353 
+2011-02-18 19:03:57,218 INFO [TClient] inited. ---> net.py __init__ 502 
+2011-02-18 19:03:57,219 INFO [TServer] ('0.0.0.0', 8889),fd:3 inited. ---> net.py start 338 
+2011-02-18 19:03:57,220 INFO [TServer] started. Service ThreadName:Thread-1 ---> net.py start 347 
+2011-02-18 19:03:57,221 INFO [TServer] running...  ---> net.py Selector 431 
+2011-02-18 19:03:57,225 INFO [TClient] begin to send 3 bytes from fd:7 ... ---> net.py send 63 
+2011-02-18 19:03:57,225 INFO [TClient] send 3 bytes succ. ---> net.py send 83 
+2011-02-18 19:03:57,226 INFO [TServer] Get connection from:('127.0.0.1', 41466),fd:8 ---> net.py Selector 441 
+2011-02-18 19:03:57,227 INFO [TServer] close the connection from:('127.0.0.1', 41466), fd:8 ---> net.py Selector 449 
+2011-02-18 19:03:57,227 INFO [TServer] socket:8 closed ---> net.py closeSocket 353 
+2011-02-18 19:04:00,225 INFO [TServer] ('0.0.0.0', 8888),fd:7 inited. ---> net.py start 338 
+2011-02-18 19:04:00,226 INFO [TServer] started. Service ThreadName:Thread-2 ---> net.py start 347 
+2011-02-18 19:04:00,227 INFO [TServer] running...  ---> net.py Selector 431 
+2011-02-18 19:04:00,227 INFO [TClient] inited. ---> net.py __init__ 502 
+2011-02-18 19:04:00,229 INFO [TClient] begin to send 21 bytes from fd:8 ... ---> net.py send 63 
+2011-02-18 19:04:00,230 INFO [TClient] send 21 bytes succ. ---> net.py send 83 
+2011-02-18 19:04:00,230 INFO [TServer] Get connection from:('127.0.0.1', 43940),fd:9 ---> net.py Selector 441 
+2011-02-18 19:04:00,231 INFO [TServer] begin to recv 16 bytes from fd:9 ... ---> net.py recv 98 
+2011-02-18 19:04:00,232 INFO [TServer] recv 16 bytes succ. ---> net.py recv 124 
+2011-02-18 19:04:00,232 INFO [TServer] begin to recv 5 bytes from fd:9 ... ---> net.py recv 98 
+2011-02-18 19:04:00,233 INFO [TServer] recv 5 bytes succ. ---> net.py recv 124 
+2011-02-18 19:04:00,234 INFO [TServer] close the connection from:('127.0.0.1', 43940), fd:9 ---> net.py Selector 449 
+2011-02-18 19:04:00,234 INFO [TServer] socket:9 closed ---> net.py closeSocket 353 
+2011-02-18 19:09:05,961 INFO [TClient] inited. ---> net.py __init__ 502 
+2011-02-18 19:09:05,962 INFO [TServer] ('0.0.0.0', 8889),fd:3 inited. ---> net.py start 338 
+2011-02-18 19:09:05,963 INFO [TServer] started. Service ThreadName:Thread-1 ---> net.py start 347 
+2011-02-18 19:09:05,965 INFO [TServer] running...  ---> net.py Selector 431 
+2011-02-18 19:09:05,968 INFO [TClient] begin to send 3 bytes from fd:7 ... ---> net.py send 63 
+2011-02-18 19:09:05,969 INFO [TClient] send 3 bytes succ. ---> net.py send 83 
+2011-02-18 19:09:05,969 INFO [TServer] Get connection from:('127.0.0.1', 35735),fd:8 ---> net.py Selector 441 
+2011-02-18 19:09:05,970 INFO [TServer] close the connection from:('127.0.0.1', 35735), fd:8 ---> net.py Selector 449 
+2011-02-18 19:09:05,971 INFO [TServer] socket:8 closed ---> net.py closeSocket 353 
+2011-02-18 19:09:08,972 INFO [TServer] ('0.0.0.0', 8888),fd:7 inited. ---> net.py start 338 
+2011-02-18 19:09:08,973 INFO [TServer] started. Service ThreadName:Thread-2 ---> net.py start 347 
+2011-02-18 19:09:08,973 INFO [TServer] running...  ---> net.py Selector 431 
+2011-02-18 19:09:08,974 INFO [TClient] inited. ---> net.py __init__ 502 
+2011-02-18 19:09:08,976 INFO [TClient] begin to send 21 bytes from fd:8 ... ---> net.py send 63 
+2011-02-18 19:09:08,976 INFO [TClient] send 21 bytes succ. ---> net.py send 83 
+2011-02-18 19:09:08,977 INFO [TServer] Get connection from:('127.0.0.1', 40110),fd:9 ---> net.py Selector 441 
+2011-02-18 19:09:08,978 INFO [TServer] begin to recv 16 bytes from fd:9 ... ---> net.py recv 98 
+2011-02-18 19:09:08,978 INFO [TServer] recv 16 bytes succ. ---> net.py recv 124 
+2011-02-18 19:09:08,979 INFO [TServer] begin to recv 5 bytes from fd:9 ... ---> net.py recv 98 
+2011-02-18 19:09:08,979 INFO [TServer] recv 5 bytes succ. ---> net.py recv 124 
+2011-02-18 19:09:08,981 INFO [TServer] close the connection from:('127.0.0.1', 40110), fd:9 ---> net.py Selector 449 
+2011-02-18 19:09:08,981 INFO [TServer] socket:9 closed ---> net.py closeSocket 353 

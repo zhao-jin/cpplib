@@ -1,0 +1,35 @@
+// Copyright 2011, Tencent Inc.
+// Author: Eric Liu <ericliu@tencent.com>
+//    Hsiaokang Liu <hsiaokangliu@tencent.com>
+//   Dongping HUANG <dphuang@tencent.com>
+
+package poppy;
+
+import "rpc_option.proto";
+import "google/protobuf/descriptor.proto";
+
+option java_package="com.soso.poppy";
+
+message EmptyRequest {
+}
+
+message EmptyResponse {
+}
+
+message HealthResponse {
+    required string health = 1;
+}
+
+message RegisteredServices
+{
+    repeated google.protobuf.ServiceDescriptorProto services = 1;
+}
+
+// The server side serivce.
+service BuiltinService {
+    // The service timeout is 3 seconds.
+    option (poppy.service_timeout) = 3000;
+
+    rpc Health(EmptyRequest) returns(HealthResponse);
+    rpc ListServices(EmptyRequest) returns (RegisteredServices);
+}

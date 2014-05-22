@@ -1,0 +1,13 @@
+struct Head {
+    int ver;
+    int cmd;
+    int len;
+    int seq;
+};
+
+struct S2C{
+   Head head;
+   char buf[head.len];
+};
+S2C s2c;
+

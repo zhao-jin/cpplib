@@ -1,0 +1,451 @@
+package poppy.examples.ad;
+
+//快速更新的定义:
+//AdGroup.bid_words 的 CPC 和匹配类型修改
+//AdGroup.negative_bid_words 的匹配类型修改
+//AdCampaign.negative_bid_words 的匹配类型修改
+//AdGroup.creatives 的增加,修改,删除
+//广告主,广告系列的各种属性( AreaTarget IPTarget TimeTarget show_option )修改
+//全量更新/增量更新的定义:
+//其余更新类型为全量更新/增量更新
+
+
+
+//全量/增量更新的定义:
+//除了快速更新以外,都是全量/增量更新
+
+
+
+//定义A为 AdGroup,AdCampaign,或 Advertiser
+//定义B为 WordTarget,BidWord,Creative
+//定义B1为 WordTarget,BidWord
+//定义 kOpTypeXXXX 为以下的任意一个:
+//  kOpTypeBidWords
+//  kOpTypeNegativeBidWords
+//  kOpTypeCreative
+//  kOpTypeTimeTarget
+//  kOpTypeAreaTarget
+//  kOpTypeIPTarget
+//  kOpTypeShowOption
+
+
+
+//optype的最宽限定规则:
+//1.optype 必须存在
+//2.A.optype 只能为下面的一个:
+//  kOpTypeNew | (若干个 kOpTypeXXXX 的或)
+//  kOpTypeModify | (若干个 kOpTypeXXXX 的或)
+//否则整个A被忽略(注意:并不是忽略其中的一个B)
+//3.B.optype 只能为下面的一个:
+//  kOpTypeNew
+//  kOpTypeModify
+//  kOpTypeDelete
+//4.任何一个 optype 不能同时满足下面的多个条件:
+//  optype & kOpTypeNew != 0
+//  optype & kOpTypeModify != 0
+//  optype & kOpTypeDelete != 0
+
+
+
+//快速更新的规则:
+//1.如果A和其中的任何一个B不满足 optype 的最宽限定规则,则整个A被忽略
+//2.A.optype 只能为 kOpTypeModify | (若干个 kOpTypeXXXX 的或),否则整个A被忽略
+//3.B1.optype 只能为 kOpTypeModify,否则该B1被忽略
+//4.B1.word_string 需要和之前的 word_string 完全一致,否则该B1被忽略
+//5.B1.如果之前被删除,则忽略本次的快速更新
+//6.如果 AdGroup.optype & kOpTypeBidWords 不为零并且满足4,更新 AdGroup.bid_words 的 cpc 和 match_type
+//7.如果 AdGroup.optype & kOpTypeNegativeBidWords 不为零并且满足4,更新 AdGroup.negative_bid_words 的 match_type
+//8.如果 AdCampaign.optype & kOpTypeNegativeBidWords 不为零并且满足4,更新  AdCampaign.negative_bid_words 的 match_type
+//9.如果 AdCampaign.optype & kOpTypeTimeTarget 不为零,更新 AdCampaign.time_target
+//10.如果 AdCampaign.optype & kOpTypeAreaTarget 不为零,更新 AdCampaign.area_target
+//11.如果 AdCampaign.optype & kOpTypeIPTarget 不为零,更新 AdCampaign.ip_target
+//12.如果 AdCampaign.optype & kOpTypeShowOption 不为零,更新 AdCampaign.show_option
+//13.如果 Advertiser.optype & kOpTypeAreaTarget 不为零,更新 Advertiser.area_target
+//14.如果 Advertiser.optype & kOpTypeIPTarget 不为零,更新 Advertiser.ip_target
+//15.其余情况均忽略
+
+
+
+//全量/增量更新的规则:
+//1.如果A和其中的任何一个B不满足 optype 的最宽限定规则,则整个A被忽略
+//2.如果 A.optype & kOpTypeNew 不为零,则删除旧有的索引项(如果有),然后添加新的索引项(见2.1和2.2)
+//2.1.如果 A 包含的 B.optype 为 kOpTypeNew 或 kOpTypeModify , 则添加 valid 字段为 true
+//2.2.如果 A 包含的 B.optype 为 kOpTypeDelete , 则添加 valid 字段为 false
+//3.如果 A.optype & kOpTypeModify 不为零:
+//    如果旧的索引项不存在,则忽略A
+//    如果旧的索引项存在,则根据 optype 字段,仅修改变化的索引项字段
+//    (见3.1,3.2和2.3)
+//3.1.如果 B.optype & kOpTypeNew 不为零,则删除旧有的索引项(如果有),然后添加新的索引项
+//3.2.如果 B.optype & kOpTypeModify 不为零:
+//    如果旧的索引项不存在,则忽略B
+//    如果旧的索引项存在,则修改 WordTarget 或 Creative (用新的完全覆盖旧的)
+//3.3.如果 B.optype & kOpTypeDelete 不为零
+//    如果旧的索引项不存在,则忽略
+//    如果旧的索引项存在,则在倒排索引中删除该索引项,在正排索引中将valid字段置为false
+//7.其余情况均忽略
+
+
+//匹配类型
+enum MatchType {
+    kMatchTypeExact = 1;
+    kMatchTypeSubPhrase = 2;
+    kMatchTypeBroad = 4;
+    kMatchTypeNegativeExact = 8;
+    kMatchTypeNegativeSubPhrase = 16;
+    kMatchTypeNegativeBroad = 32;
+}
+
+enum OpType {
+    kOpTypeNew = 1;
+    kOpTypeModify = 2;
+    kOpTypeDelete = 4;
+
+    kOpTypeBidWords = 8;
+    kOpTypeNegativeBidWords = 16;
+    kOpTypeCreative = 32;
+
+    kOpTypeTimeTarget = 64;
+    kOpTypeAreaTarget = 128;
+    kOpTypeIPTarget = 256;
+    kOpTypeShowOption = 512;
+
+    kOpTypeAllFields = 1016;
+}
+
+
+//输出的数据更新类型
+enum PubType {
+    kEntire = 1;//全量
+    kIncremental = 2;//增量
+    kQuick = 3;//快速
+    kInvalidValid = 4;//上下线
+    kModified = 5;//更改id
+}
+
+
+//区分广告类型
+enum AdType {
+    kAFS = 1;
+    kAFC = 2;
+    kWireless = 4;
+}
+
+
+//时间定向
+message TimeTarget {
+    //从最高位开始的24个bit,每个bit代表着一天中的一个小时
+    optional uint32 monday = 1;
+    optional uint32 tuesday = 2;
+    optional uint32 wednesday = 3;
+    optional uint32 thursday = 4;
+    optional uint32 friday = 5;
+    optional uint32 saturday = 6;
+    optional uint32 sunday = 7;
+}
+
+
+//地域定向
+message AreaTarget {
+    //要过滤的地域-省直辖市级
+    repeated uint32 area_code = 1;
+}
+
+//IP定向
+message IPTarget {
+    //要过滤的ip列表
+    repeated fixed32 ip = 1;
+    //要过滤的网段列表,使用掩码形式,只支持a.b.c.*的形式
+    repeated fixed32 netmask = 2;
+}
+
+//定向词(也是否定竞价词)
+message WordTarget {
+    //竞价词ID,全局唯一
+    required fixed64 word_id = 1;
+    //匹配类型
+    required MatchType match_type = 2;
+    //竞价词字符串
+    required bytes word_string = 3;
+    //操作类型
+    //可以为 kOpTypeNew, OpTypeModify, kOpTypeDelete
+    optional OpType optype = 4;
+    //状态(1-启用,0-停用)
+    optional int32 status = 5;
+}
+
+//广告的分类定向
+message ClassTarget{
+    //分类ID,全局唯一
+    optional uint32 class_id = 1;
+    //分类的置信度
+    optional double class_ratio = 2;
+    //分类的权重
+    required double class_weight = 3;
+}
+
+//竞价词
+message BidWord {
+    required WordTarget bid_word = 1;
+    //CPC
+    optional int32 cpc = 2;
+    //目标URL
+    optional bytes dest_url = 3;
+    //主域ID(dist填写)
+    optional fixed64 domain_id = 4;
+}
+
+//广告创意
+message Creative {
+    //创意ID,全局唯一
+    required fixed64 crid = 1;
+    optional bytes title = 2;
+    optional bytes desc1 = 3;
+    optional bytes desc2 = 4;
+    //显示URL
+    optional bytes show_url = 5;
+    //目标URL
+    optional bytes dest_url = 6;
+    //操作类型
+    //可以为 kOpTypeNew, OpTypeModify, kOpTypeDelete
+    optional OpType optype = 7;
+    //主域ID(dist填写)
+    optional fixed64 domain_id = 8;
+    //状态(1-启用,0-停用)
+    optional int32 status = 9;
+    //是否显示QQ号
+    optional bool show_qq = 10;
+    //无线广告点击电话
+    optional bytes advertiser_wireless_click_phone = 11;
+    //web=1 wap=2 默认web
+    optional int32 wireless_target_url_type = 12;
+}
+
+//品牌广告页面片
+message BrandZone{
+    enum Type {
+        // 1000=Title，2000=Logo，3000=内嵌链接，4000=子链接，
+        kTitle = 1000;
+        kLogo = 2000;
+        kInnerLink = 3000;
+        kSubLink = 4000;
+    }
+    optional  bool  is_url  = 1;
+    //每增加一个内容，type++
+    optional Type type    = 2;
+    //文字内容，或者链接
+    optional  bytes     content = 3;
+}
+
+//品牌广告的message
+message BrandCreative{
+    //版本
+    optional int32 version = 1;
+    //页面片
+    repeated BrandZone brandzone = 2;
+    //时间定向
+    optional TimeTarget time_target = 3;
+    //地域定向
+    optional AreaTarget area_target = 4;
+    //IP定向
+    optional IPTarget ip_target = 5;
+}
+
+//广告组
+message AdGroup {
+    required fixed64 gid = 1;
+    required fixed64 cid = 2;
+    required fixed64 uid = 3;
+    optional uint32 index_id = 4;
+    //竞价词
+    repeated BidWord bid_words = 5;
+    //否定竞价词
+    repeated WordTarget negative_bid_words = 6;
+    //创意
+    repeated Creative creatives = 7;
+    //操作类型
+    //全量/增量更新可以为 kOpTypeNew, OpTypeModify
+    //快速更新只能为 OpTypeModify
+    optional OpType optype = 8;
+    //状态(1-启用,0-停用)
+    optional int32 status = 9;
+    //广告分类
+    repeated ClassTarget class_targets = 10;
+    //默认出价，用于afc系统
+    optional int32 default_cpc = 11;
+    //此广告组的类型
+    optional AdType adtype = 12;
+
+    repeated BrandCreative brandcreative = 20;
+}
+
+//广告系列
+message AdCampaign  {
+    required fixed64 cid = 1;
+    required fixed64 uid = 2;
+    //时间定向
+    optional TimeTarget time_target = 3;
+    //地域定向
+    optional AreaTarget area_target = 4;
+    //IP定向
+    optional IPTarget ip_target = 5;
+    //否定竞价词
+    repeated WordTarget negative_bid_words = 6;
+    //播放策略,随机播放/优先播放
+    optional uint32 show_option = 7;
+    //日预算
+    optional int32 day_budget = 8;
+    //操作类型
+    //全量/增量更新可以为 kOpTypeNew, OpTypeModify
+    //快速更新只能为 OpTypeModify
+    optional int32 optype = 9;
+    //状态(1-启用,0-停用)
+    optional int32 status = 10;
+}
+
+//广告主/用户
+message Advertiser {
+    required uint64 uid = 1;
+    //地域定向
+    optional AreaTarget area_target = 2;
+    //IP定向
+    optional IPTarget ip_target = 3;
+    //操作类型
+    //全量/增量更新可以为 kOpTypeNew, OpTypeModify
+    //快速更新只能为 OpTypeModify
+    optional OpType optype = 4;
+
+    //日预算
+    optional int32 day_budget = 5;
+    //充值
+    optional int32 charge = 6;
+    //余额
+    optional int32 balance = 7;
+    //余额对应的click spam id
+    optional fixed64 last_click_id = 8;
+    optional fixed64 last_spam_id = 9;
+
+    //状态(1-启用,0-停用)
+    optional int32 status = 10;
+
+    //广告主QQ号
+    optional bytes qq = 11;
+}
+
+
+
+//pub输出的数据文件的头部信息
+message PubHeader {
+    required PubType pub_type = 1;
+    optional fixed64 pub_id = 2;
+    required uint64 pub_time = 3;
+    optional uint32 slice_id = 4;
+    optional uint32 record_num = 5;
+}
+
+
+//pub输出的数据文件中的一条记录(全量更新/增量更新/快速更新)
+//数据文件第一个记录应该是kHeader类型
+//剩下的记录只能是另外几个类型
+message PubRecord {
+    enum RecordType {
+        kHeader = 1;
+        kAdvertiser = 2;
+        kCampaign = 3;
+        kGroup = 4;
+    }
+    required RecordType type = 1;
+    optional PubHeader header = 2;
+    optional Advertiser advertiser = 3;
+    optional AdCampaign campaign = 4;
+    optional AdGroup adgroup = 5;
+    optional uint32 adtype = 6;
+}
+
+
+//下线信息/上线信息结构
+message InvalidValid {
+    repeated uint64 invalid_uid = 1;
+    repeated uint64 valid_uid   = 2;
+    repeated uint64 invalid_cid = 3;
+    repeated uint64 valid_cid   = 4;
+    repeated uint64 invalid_gid = 5;
+    repeated uint64 valid_gid   = 6;
+}
+
+
+//下线信息/上线信息文件/socket包通知
+message InvalidValidNotify {
+    //头部
+    required PubHeader header = 1;
+    //是否是全量下线信息/上线信息,否则是增量
+    //一般来说,文件中是全量信息,socket包中是增量信息
+    required bool entire = 2;
+    required InvalidValid invalid_valid = 3;
+}
+
+
+//更新序列文件中的一个片段
+message PubSlice {
+    required uint64 pub_time = 1;
+    //本次更新的各个文件名
+    required bytes file_name = 2;
+    //分片ID(若没有指定则代表所有分片均要拉取)
+    optional uint32 slice_id = 3;
+    //所有文件MD5的异或值
+    optional fixed64 md5_xor = 4;
+    //文件类型
+    required PubType pub_type = 5;
+
+    //下面四个字段发布不使用
+    //开始拉取的时间
+    optional uint64 begin_update_time = 10;
+    //结束拉取的时间
+    optional uint64 finish_update_time = 11;
+    //开始加载的时间
+    optional uint64 begin_load_time = 12;
+    //结束加载的时间
+    optional uint64 finish_load_time = 13;
+}
+
+
+//更新序列文件(为广告更新数据和invalid id list共用)
+//约定
+//1.第一个数据必须是Invalid ID数据
+//2.第二个数据必须是全量数据
+//3.每天的全量时间戳要保证严格递增
+//4.每个Invalid ID数据的时间戳要保证严格递增
+//5.Invalid id数据的分片号为-1,即属于所有分片,每个工作组都需要拉取
+//6.每个分片的数据时间戳要保证非递减,一个分片上同一时间戳的数据最多为两个,
+//并且这两个数据必须分别是增量更新和快速更新,并且增量更新在前
+//7.不同分片之间的数据的时间戳可以无序
+//8.序列文件中的时间戳必须要文件头部时间戳一致
+message PubSequence {
+    repeated PubSlice slice = 1;
+    optional fixed64 pub_id = 2;
+    optional uint64 pub_seq = 3;
+}
+
+
+
+//变化的ID的时间和ID值
+message ModifiedId {
+    required uint64 pub_time = 1;
+    required fixed64 id = 2;
+}
+
+//变化的ID信息,网络接口(给broker)
+message ModifiedIdNotify
+{
+    repeated ModifiedId uid = 1;
+    repeated ModifiedId cid = 2;
+    repeated ModifiedId gid = 3;
+}
+
+
+//下线信息,网络接口(给match和broker)
+//message InvalidValidNotify 是pub主动推送给match和broker的
+//match和broker回复InvalidIdNotifyResponse
+message InvalidIdNotifyResponse {
+    required uint32 retval = 1;//0, OK; 1, failed
+}
+

@@ -1,0 +1,10 @@
+static\favicon.ico
+static\flags.html
+static\flags.js
+static\forms.html
+static\forms.js
+static\jquery-1.4.2.min.js
+static\jquery.json-2.2.min.js
+static\methods.html
+static\poppy.html
+static\status.html

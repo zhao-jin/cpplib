@@ -1,0 +1,33 @@
+// Copyright 2011, Tencent Inc.
+// Author: Eric Liu <ericliu@tencent.com>
+
+import "poppy/rpc_option.proto";
+import "poppy/rpc_message.proto";
+
+package rpc_examples;
+
+message AddSnapshotRequest {
+    required fixed64 docid = 1;
+    required bytes content = 2;
+}
+
+message QuerySnapshotRequest {
+    required fixed64 docid = 1;
+}
+
+message QuerySnapshotResponse {
+    optional bytes content = 1;
+}
+
+// The server side serivce.
+service SnapshotServer {
+    rpc AddSnapshot(AddSnapshotRequest) returns(poppy.EmptyResponse) {
+        // This method specific poppy compress data package.
+        option (poppy.request_compress_type) = CompressTypeSnappy;
+    }
+
+    rpc QuerySnapshot(QuerySnapshotRequest) returns(QuerySnapshotResponse) {
+        // This method specific poppy compress data package.
+        option (poppy.response_compress_type) = CompressTypeSnappy;
+    }
+}
